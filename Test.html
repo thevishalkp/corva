@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <form role="form" mehtod="POST" action="/compute">
+        <p name="inputdata[timestamp]" class="inputdata">
+            <script> document.write(new Date().toLocaleDateString()); </script>
+        </p>
+        <h3 name="inputData[data][0][title]" value="First Input" class="inputData">First Input</h3>
+        <input type="number" name="inputData[data][0][values][]" class="inputData"><br>
+        <input type="number" name="inputData[data][0][values][]" class="inputData"><br>
+        <input type="number" name="inputData[data][0][values][]" class="inputData"><br>
+        <input type="number" name="inputData[data][0][values][]" class="inputData"><br>
+
+        <h3 name="inputData[data][1][title]" value="Second Input" class="pages_title"> Second Input</h3>
+        <input type="number" name="inputData[data][1][values][]" class="inputData"><br>
+        <input type="number" name="inputData[data][1][values][]" class="inputData"><br>
+        <input type="number" name="inputData[data][1][values][]" class="inputData"><br>
+        <input type="number" name="inputData[data][1][values][]" class="inputData"><br>
+        <input type="submit">
+    </form>
+</body>
+
+</html>

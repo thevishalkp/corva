@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link href="//fonts.googleapis.com/css?family=Play" rel="stylesheet">
+    <style>
+        html,body{
+        font-family: 'Play';
+        background: linear-gradient(to right,#056f6b 0,#15223a 100%)
+        }
+
+        .container{
+        height: 100%;
+        align-content: center;
+        }
+
+        .card{
+        margin-top: auto;
+        margin-bottom: auto;
+        width: 400px;
+        background-color: #16B18E;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="col d-flex justify-content-center">
+            <div class="card">
+                <div class="card-header">
+                    <h3>Input</h3>
+                </div>
+                <div class="card-body">
+                    <form role="form" method="POST" action="/compute/add">
+                        <p>
+                            Give the inputs in the space provided separated by commas(",").<br>
+                            <strong>The page will be reloaded if the lengths don't match.</strong>
+                        </p>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"></span>
+                            </div>
+                            <input name="firstInput" type="text" class="form-control" placeholder="1,2,3,4,5,6">
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"></span>
+                            </div>
+                            <input name="secondInput" type="text" class="form-control" placeholder="1,2,3,4,5,6">
+                        </div>
+                        <input type="submit" align="justify-content-center">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
