@@ -5,10 +5,8 @@ const InputModel = require("../models/input");
 const OutputModel = require("../models/output")
 router.post('/add', function (req, res, next) {
 
-    var time = Date.now();
-    var slug = (Math.floor(time / 1000).toString());
-
-    console.log(time);
+    var slug = (Math.floor(Date.now() / 1000).toString());
+    
     console.log(slug);
 
     if (req.body.firstInput) {
@@ -24,7 +22,7 @@ router.post('/add', function (req, res, next) {
                 input2[a] = parseInt(input2[a], 10);
             }
             const inputModelInstance = new InputModel({
-                timestamp: time,
+                timestamp: slug,
                 data: [
                     { title: "input1", values: input1 },
                     { title: "input2", values: input2 }
@@ -39,7 +37,7 @@ router.post('/add', function (req, res, next) {
                 input1[index] = item - input1[index];
             });
             const outputModelInstance = new OutputModel({
-                timestamp: time,
+                timestamp: slug,
                 requestID: slug,
                 result: [{
                     title: "result",
