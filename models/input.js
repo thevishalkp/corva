@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const InputSchema = new mongoose.Schema({
-    timestamp : { type : Date, default : Date.now()},
+    timestamp : Date,
     data : [{
         title : String,
         values : [Number]
