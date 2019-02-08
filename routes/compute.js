@@ -49,13 +49,14 @@ router.post('/add', function (req, res, next) {
 
             outputModelInstance.save(function (err) {
                 console.log("output saved");
-                res.redirect();
+                res.redirect(`/compute/${slug}`);
             });
         }
     }
     else{
         var part1 = req.body.data[0].values;
         var part2 = req.body.data[1].values;
+        var time1 = req.body.timestamp;
         if (part1.length != part2.length) {
             console.log(" Data of Unequal Lengths");
             res.send('Data of unequal lengths');
@@ -65,17 +66,18 @@ router.post('/add', function (req, res, next) {
                 part1[index] = item - part1[index];
             });
             const outputModelInstance = new OutputModel({
-                timestamp: time,
+                timestamp: time1,
                 requestID: slug,
                 result: [{
                     title: "result",
                     values: part1
                 }]
             });
+            console.log(outputModelInstance)
 
             outputModelInstance.save(function (err) {
                 console.log("output saved");
-                res.redirect(`/compute/${slug}`);
+                res.send({outputModelInstance});
             });
         }
     }
@@ -83,7 +85,7 @@ router.post('/add', function (req, res, next) {
 
 router.get('/:slug', function (req, res, next) {
     OutputModel.find({ requestID: req.params.slug }, function (err, rows) {
-        res.send("result", { ...rows[0]._doc })
+        res.send({ ...rows[0]._doc })
     })
 });
 
