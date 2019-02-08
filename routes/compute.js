@@ -56,7 +56,6 @@ router.post('/add', function (req, res, next) {
     else{
         var part1 = req.body.data[0].values;
         var part2 = req.body.data[1].values;
-        var time1 = req.body.timestamp;
         if (part1.length != part2.length) {
             console.log(" Data of Unequal Lengths");
             res.send('Data of unequal lengths');
@@ -66,7 +65,7 @@ router.post('/add', function (req, res, next) {
                 part1[index] = item - part1[index];
             });
             const outputModelInstance = new OutputModel({
-                timestamp: time1,
+                timestamp: req.body.timestamp,
                 requestID: slug,
                 result: [{
                     title: "result",
