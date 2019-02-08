@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 
 const OutputSchema = new mongoose.Schema({
-    timestamp : Date,
-    requestID : String,
+    timestamp : Number,
+    requestID : Number,
     result :[{
         title : {type: String, default:"Result"},
         values : [Number]
