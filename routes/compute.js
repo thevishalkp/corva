@@ -54,7 +54,8 @@ router.post('/add', function (req, res, next) {
 
 router.get('/:slug', function (req, res, next) {
     OutputModel.find({ requestID: req.params.slug }, function (err, rows) {
-        res.render("result", { ...rows[0]._doc })
+        //res.render("result", { ...rows[0]._doc })
+        res.send({...rows[0]._doc})
     })
 });
 
