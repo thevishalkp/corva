@@ -5,8 +5,10 @@ const InputModel = require("../models/input");
 const OutputModel = require("../models/output")
 router.post('/add', function (req, res, next) {
 
-    var slug = (Math.floor(Date.now() / 1000).toString());
-    
+    var time = Date.now();
+    var slug = (Math.floor(time / 1000).toString());
+
+    console.log(time);
     console.log(slug);
 
     if (req.body.firstInput) {
@@ -22,7 +24,7 @@ router.post('/add', function (req, res, next) {
                 input2[a] = parseInt(input2[a], 10);
             }
             const inputModelInstance = new InputModel({
-                timestamp: slug,
+                timestamp: time,
                 data: [
                     { title: "input1", values: input1 },
                     { title: "input2", values: input2 }
@@ -37,7 +39,7 @@ router.post('/add', function (req, res, next) {
                 input1[index] = item - input1[index];
             });
             const outputModelInstance = new OutputModel({
-                timestamp: slug,
+                timestamp: time,
                 requestID: slug,
                 result: [{
                     title: "result",
@@ -51,30 +53,39 @@ router.post('/add', function (req, res, next) {
             });
         }
     }
-    else{
+    else {
         var part1 = req.body.data[0].values;
         var part2 = req.body.data[1].values;
+        var time1 = req.body.timestamp;
+        console.log(time1);
         if (part1.length != part2.length) {
             console.log(" Data of Unequal Lengths");
             res.send('Data of unequal lengths');
         }
-        else{
+        else {
             part2.forEach(function (item, index) {
                 part1[index] = item - part1[index];
             });
             const outputModelInstance = new OutputModel({
-                timestamp: req.body.timestamp,
+                timestamp: time1,
                 requestID: slug,
                 result: [{
                     title: "result",
                     values: part1
                 }]
             });
-            console.log(outputModelInstance)
 
             outputModelInstance.save(function (err) {
                 console.log("output saved");
-                res.send({outputModelInstance});
+                var Output = [{
+                    timestamp: time1,
+                    requestID: slug,
+                    result: [{
+                        title: "result",
+                        values: part1
+                    }]
+                }]
+                res.send({ Output });
             });
         }
     }
